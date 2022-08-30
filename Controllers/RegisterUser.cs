@@ -5,7 +5,7 @@ namespace Exsm3945_Assignment.Controllers
 {
     public class RegisterUser : Controller
     {
-        // GET: RegisterUser
+        //   GET: RegisterUser
         public ActionResult Index()
         {
             return View();
