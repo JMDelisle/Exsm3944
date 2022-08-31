@@ -11,10 +11,10 @@ namespace Exsm3945_Assignment.Models
     [Index("ClientId", Name = "Client_ID")]
     public partial class Account
     {
-        public Account(decimal balance)
+        /*public Account(decimal balance)
         {
             Balance = balance;
-        }
+        }*/
 
         [Key]
         [Column("ID", TypeName = "int(11)")]
@@ -26,13 +26,13 @@ namespace Exsm3945_Assignment.Models
         [Column("Interest_Applied_Date")]
         public DateOnly? InterestAppliedDate { get; set; }
         [Precision(10, 2)]
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; set; }
 
         public decimal ApplyInterest()
         {
             bool vip = this.Client.VIPClient;
             decimal apply_rate = this.AccountType.InterestRate;
-            if (vip) { apply_rate = apply_rate + 1.00m; }
+            if (vip) { apply_rate += 1.00m; }
             Balance = Decimal.Round(Balance * (1.00m + apply_rate / 100.00m), 2);
             return Balance;
         }

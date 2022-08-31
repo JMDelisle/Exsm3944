@@ -34,13 +34,13 @@ namespace Exsm3945_Assignment.Models
             get
             {
                 decimal total = 0.00m;
-                using (ApplicationDbContext dbcntxt = new ApplicationDbContext())
+                using (ApplicationDbContext dbcntxt = new())
                 {
                     foreach (Account account in dbcntxt.Accounts.ToList())
                     {
                         if (account.ClientId == this.Id)
                         {
-                            total = total + account.Balance;
+                            total += account.Balance;
                         }
                     }
                 }

@@ -76,49 +76,49 @@ namespace Exsm3945_Assignment.Data
                       );
 
             modelBuilder.Entity<Account>()
-              .HasData(new Account(62512.62m)
+              .HasData(new Account()
               {
                   Id = 1,
                   ClientId = 1,
                   AccountTypeId = 1,
                   InterestAppliedDate = new DateOnly(1998, 01, 09)
               },
-                       new Account(79364.54m)
+                       new Account()
                        {
                            Id = 2,
                            ClientId = 1,
                            AccountTypeId = 2,
                            InterestAppliedDate = new DateOnly(1979, 5, 25)
                        },
-                       new Account(169300.14m)
+                       new Account()
                        {
                            Id = 3,
                            ClientId = 2,
                            AccountTypeId = 3,
                            InterestAppliedDate = new DateOnly(2004, 04, 28)
                        },
-                       new Account(55495.53m)
+                       new Account()
                        {
                            Id = 4,
                            ClientId = 3,
                            AccountTypeId = 2,
                            InterestAppliedDate = new DateOnly(2010, 08, 03)
                        },
-                       new Account(392450.78m)
+                       new Account()
                        {
                            Id = 5,
                            ClientId = 3,
                            AccountTypeId = 1,
                            InterestAppliedDate = new DateOnly(2001, 05, 16)
                        },
-                       new Account(223.96m)
+                       new Account()
                        {
                            Id = 6,
                            ClientId = 4,
                            AccountTypeId = 2,
                            InterestAppliedDate = new DateOnly(2008, 02, 14)
                        },
-                       new Account(98000.00m)
+                       new Account()
                        {
                            Id = 7,
                            ClientId = 2,
