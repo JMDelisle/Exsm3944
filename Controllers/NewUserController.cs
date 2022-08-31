@@ -9,11 +9,11 @@ using System.Globalization;
 
 namespace MVC_Demo.Controllers
 {
-    public class ManagementController : Controller
+    public class NewUserController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ManagementController(ApplicationDbContext context)
+        public NewUserController(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -29,6 +29,9 @@ namespace Exsm3945_Assignment.Models
         public string Address { get; set; } = null!;
 
         [NotMapped]
+        public string Birthday => Dob.ToString();
+
+        [NotMapped]
         public decimal TotalDeposits
         {
             get
@@ -57,6 +60,7 @@ namespace Exsm3945_Assignment.Models
                 return this.TotalDeposits >= 100000.00m;
             }
         }
+
 
         [InverseProperty("Client")]
         public virtual ICollection<Account> Accounts { get; set; }
