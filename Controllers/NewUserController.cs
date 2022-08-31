@@ -3,27 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Exsm3945_Assignment.Controllers
 {
-    public class RegisterUser : Controller
+    public class NewUserController : Controller
     {
-        //   GET: RegisterUser
+        // GET: NewUserController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: RegisterUser/Details/5
+        // GET: NewUserController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: RegisterUser/Create
+        // GET: NewUserController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RegisterUser/Create
+        // POST: NewUserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -38,13 +38,13 @@ namespace Exsm3945_Assignment.Controllers
             }
         }
 
-        // GET: RegisterUser/Edit/5
+        // GET: NewUserController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: RegisterUser/Edit/5
+        // POST: NewUserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -59,13 +59,13 @@ namespace Exsm3945_Assignment.Controllers
             }
         }
 
-        // GET: RegisterUser/Delete/5
+        // GET: NewUserController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: RegisterUser/Delete/5
+        // POST: NewUserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
