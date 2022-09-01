@@ -19,7 +19,7 @@ namespace MVC_Demo.Controllers
             _context = context;
         }
 
-        public ActionResult GenerateNewClients()
+        public IActionResult GenerateNewClients()
         {
             // If there are exceptions, store them in the view data/bag so we can inform the user about them.
             if (TempData["Exceptions"] != null)
@@ -33,9 +33,10 @@ namespace MVC_Demo.Controllers
         public ActionResult DoTheGeneration(string acc_TypeId, string c_FirstName, string c_LastName, string c_DoB, string c_Address, decimal acc_Balance)
         {
 
-            string[] formats = { "dd-MM-yyyy" };
+            string[] formats = { "yyyy-MM-dd" };
+            DateTime user;
             // Let's do some validation!
-            DateOnly user;
+
             BLLValidationException validationState = new();
 
             // Do validation, if something fails, add it as a sub exception.
@@ -59,10 +60,10 @@ namespace MVC_Demo.Controllers
                 if (string.IsNullOrWhiteSpace(c_FirstName))
                 validationState.SubExceptions.Add(new Exception("First name was not in the correct format."));
             else
-            if (c_FirstName.Trim().Length < 2 || c_FirstName.Trim().Length > 55)
+            if (c_FirstName.Trim().Length < 2 || c_FirstName.Trim().Length > 25)
                 validationState.SubExceptions.Add(new Exception("First name character should be between 2-55."));
             else
-                if (!new Regex(@"^[a-zA-Z.-]{2,55}$").IsMatch(c_FirstName))
+                if (new Regex(@"[a-zA-Z]+-\.[a-zA-Z]+\.\s[a-zA-Z]+\.\.[a-zA-Z]+\.").IsMatch(c_FirstName))
                 validationState.SubExceptions.Add(new Exception("First name does not contain numbers."));
 
 
@@ -71,10 +72,10 @@ namespace MVC_Demo.Controllers
                 if (string.IsNullOrWhiteSpace(c_LastName))
                 validationState.SubExceptions.Add(new Exception("Last name was not in the correct format."));
             else
-            if (c_LastName.Length < 2 || c_LastName.Length > 55)
+            if (c_LastName.Length < 2 || c_LastName.Length > 25)
                 validationState.SubExceptions.Add(new Exception("Last name character should be between 2-55."));
             else
-                if (!new Regex(@"^[a-zA-Z.-]{2,55}$").IsMatch(c_FirstName)) 
+                if (!new Regex(@"[a-zA-Z]+-\.[a-zA-Z]+\.\s[a-zA-Z]+\.\.[a-zA-Z]+\.").IsMatch(c_LastName))
                 validationState.SubExceptions.Add(new Exception("Last name does not contain numbers."));
 
 
@@ -83,10 +84,10 @@ namespace MVC_Demo.Controllers
             if (c_DoB == null)//Makes it so you cannot just enter nothing.
                 validationState.SubExceptions.Add(new Exception("You did not provide our BirthDate!"));
             else
-                if (!DateOnly.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out user))
+                if (!DateTime.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out user))
                 validationState.SubExceptions.Add(new Exception("Date of Birth was not in the correct format."));
 
-            //if (!DateOnly.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly dt))
+            //if (!DateTime.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt))
 
 
                 if (string.IsNullOrWhiteSpace(c_Address))
@@ -115,14 +116,15 @@ namespace MVC_Demo.Controllers
                     FirstName = c_FirstName,
                     LastName = c_LastName,
                     Dob = DateOnly.Parse(c_DoB),
-                    Address = c_Address,
+                    Address = c_Address
                 };
             
 
                 _context.Clients.Add(randomClients);
+                _context.SaveChanges();
 
-                var userClientId = _context.Clients.Where(x => x.FirstName == c_FirstName && x.LastName == c_LastName).Single();
-                _context.Entry(userClientId).Collection(x => x.Accounts).Load();
+               // var userClientId = _context.Clients.Where(x => x.FirstName == c_FirstName && x.LastName == c_LastName).Single();
+               // _context.Entry(userClientId).Collection(x => x.Accounts).Load();
                 var newClientAccountCreation = randomClients.Id;
 
 

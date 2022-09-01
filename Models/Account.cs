@@ -33,6 +33,9 @@ namespace Exsm3945_Assignment.Models
         [NotMapped]
         public string appliedDate => InterestAppliedDate.ToString();
 
+        [NotMapped]
+        public string balanceAmount => Balance.ToString();
+
         public decimal ApplyInterest()
         {
             bool vip = this.Client.VIPClient;
