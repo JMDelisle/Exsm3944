@@ -28,13 +28,13 @@ namespace Exsm3945_Assignment.Models
         [Precision(10, 2)]
         public decimal Balance { get; set; }
 
+        [NotMapped]
+        public string ClientRevised => Id + ", " + Client.Fullname;
 
 
         [NotMapped]
-        public string appliedDate => InterestAppliedDate.ToString();
+        public string AppliedDate => InterestAppliedDate.ToString();
 
-        [NotMapped]
-        public string balanceAmount => Balance.ToString();
 
         public decimal ApplyInterest()
         {

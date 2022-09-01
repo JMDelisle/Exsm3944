@@ -33,6 +33,9 @@ namespace Exsm3945_Assignment.Models
         public string Birthday => Dob.ToString();
 
         [NotMapped]
+        public string Fullname => FirstName + ", " + LastName;
+
+        [NotMapped]
         public decimal TotalDeposits
         {
             get

@@ -61,10 +61,10 @@ namespace MVC_Demo.Controllers
                 validationState.SubExceptions.Add(new Exception("First name was not in the correct format."));
             else
             if (c_FirstName.Trim().Length < 2 || c_FirstName.Trim().Length > 25)
-                validationState.SubExceptions.Add(new Exception("First name character should be between 2-55."));
+                validationState.SubExceptions.Add(new Exception("First name character should be between 2-25."));
             else
-                if (new Regex(@"[a-zA-Z]+-\.[a-zA-Z]+\.\s[a-zA-Z]+\.\.[a-zA-Z]+\.").IsMatch(c_FirstName))
-                validationState.SubExceptions.Add(new Exception("First name does not contain numbers."));
+                if (!new Regex(@"^[A-Za-z,.'-]{2,25}$").IsMatch(c_FirstName))
+                validationState.SubExceptions.Add(new Exception("First name does not contain numbers or symbols."));
 
 
 
@@ -73,10 +73,10 @@ namespace MVC_Demo.Controllers
                 validationState.SubExceptions.Add(new Exception("Last name was not in the correct format."));
             else
             if (c_LastName.Length < 2 || c_LastName.Length > 25)
-                validationState.SubExceptions.Add(new Exception("Last name character should be between 2-55."));
+                validationState.SubExceptions.Add(new Exception("Last name character should be between 2-25."));
             else
-                if (!new Regex(@"[a-zA-Z]+-\.[a-zA-Z]+\.\s[a-zA-Z]+\.\.[a-zA-Z]+\.").IsMatch(c_LastName))
-                validationState.SubExceptions.Add(new Exception("Last name does not contain numbers."));
+                if (!new Regex(@"^[A-Za-z,.'-]{2,15}$").IsMatch(c_LastName))
+                validationState.SubExceptions.Add(new Exception("Last name does not contain numbers or symbols."));
 
 
             else

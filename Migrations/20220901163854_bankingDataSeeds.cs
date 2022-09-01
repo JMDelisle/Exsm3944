@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Exsm3945_Assignment.Migrations
 {
-    public partial class initialDataSeed : Migration
+    public partial class bankingDataSeeds : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -247,7 +247,7 @@ namespace Exsm3945_Assignment.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Client_ID = table.Column<int>(type: "int(11)", nullable: false),
                     Account_Type_ID = table.Column<int>(type: "int(11)", nullable: false),
-                    Interest_Applied_Date = table.Column<DateOnly>(type: "date", nullable: true),
+                    Interest_Applied_Date = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Balance = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
                 },
                 constraints: table =>
@@ -293,13 +293,13 @@ namespace Exsm3945_Assignment.Migrations
                 columns: new[] { "ID", "Account_Type_ID", "Balance", "Client_ID", "Interest_Applied_Date" },
                 values: new object[,]
                 {
-                    { 1, 1, 0m, 1, new DateOnly(1998, 1, 9) },
-                    { 2, 2, 0m, 1, new DateOnly(1979, 5, 25) },
-                    { 3, 3, 0m, 2, new DateOnly(2004, 4, 28) },
-                    { 4, 2, 0m, 3, new DateOnly(2010, 8, 3) },
-                    { 5, 1, 0m, 3, new DateOnly(2001, 5, 16) },
-                    { 6, 2, 0m, 4, new DateOnly(2008, 2, 14) },
-                    { 7, 3, 0m, 2, new DateOnly(2019, 10, 5) }
+                    { 1, 1, 15693.15m, 1, new DateTime(1998, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, 54789.00m, 1, new DateTime(1979, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 3, 1000000000.25m, 2, new DateTime(2004, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 2, 35607.78m, 3, new DateTime(2010, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 1, 505.25m, 3, new DateTime(2001, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 2, 255803.01m, 4, new DateTime(2008, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, 3, 103678.23m, 2, new DateTime(2019, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

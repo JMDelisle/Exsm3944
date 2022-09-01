@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exsm3945_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220831201021_initialDataSeed")]
-    partial class initialDataSeed
+    [Migration("20220901163854_bankingDataSeeds")]
+    partial class bankingDataSeeds
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,8 +43,8 @@ namespace Exsm3945_Assignment.Migrations
                         .HasColumnType("int(11)")
                         .HasColumnName("Client_ID");
 
-                    b.Property<DateOnly?>("InterestAppliedDate")
-                        .HasColumnType("date")
+                    b.Property<DateTime?>("InterestAppliedDate")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("Interest_Applied_Date");
 
                     b.HasKey("Id");
@@ -60,57 +60,57 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 1,
                             AccountTypeId = 1,
-                            Balance = 0m,
+                            Balance = 15693.15m,
                             ClientId = 1,
-                            InterestAppliedDate = new DateOnly(1998, 1, 9)
+                            InterestAppliedDate = new DateTime(1998, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             AccountTypeId = 2,
-                            Balance = 0m,
+                            Balance = 54789.00m,
                             ClientId = 1,
-                            InterestAppliedDate = new DateOnly(1979, 5, 25)
+                            InterestAppliedDate = new DateTime(1979, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             AccountTypeId = 3,
-                            Balance = 0m,
+                            Balance = 1000000000.25m,
                             ClientId = 2,
-                            InterestAppliedDate = new DateOnly(2004, 4, 28)
+                            InterestAppliedDate = new DateTime(2004, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
                             AccountTypeId = 2,
-                            Balance = 0m,
+                            Balance = 35607.78m,
                             ClientId = 3,
-                            InterestAppliedDate = new DateOnly(2010, 8, 3)
+                            InterestAppliedDate = new DateTime(2010, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
                             AccountTypeId = 1,
-                            Balance = 0m,
+                            Balance = 505.25m,
                             ClientId = 3,
-                            InterestAppliedDate = new DateOnly(2001, 5, 16)
+                            InterestAppliedDate = new DateTime(2001, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 6,
                             AccountTypeId = 2,
-                            Balance = 0m,
+                            Balance = 255803.01m,
                             ClientId = 4,
-                            InterestAppliedDate = new DateOnly(2008, 2, 14)
+                            InterestAppliedDate = new DateTime(2008, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 7,
                             AccountTypeId = 3,
-                            Balance = 0m,
+                            Balance = 103678.23m,
                             ClientId = 2,
-                            InterestAppliedDate = new DateOnly(2019, 10, 5)
+                            InterestAppliedDate = new DateTime(2019, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
