@@ -19,7 +19,7 @@ namespace Exsm3945_Assignment.Migrations
                 {
                     ID = table.Column<int>(type: "int(11)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false, collation: "utf8mb4_general_ci")
+                    Name = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true, collation: "utf8mb4_general_ci")
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Interest_Rate = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
                 },
@@ -92,12 +92,12 @@ namespace Exsm3945_Assignment.Migrations
                 {
                     ID = table.Column<int>(type: "int(11)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    First_Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false, collation: "utf8mb4_general_ci")
+                    First_Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true, collation: "utf8mb4_general_ci")
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Last_Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false, collation: "utf8mb4_general_ci")
+                    Last_Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true, collation: "utf8mb4_general_ci")
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DOB = table.Column<DateOnly>(type: "date", nullable: false),
-                    Address = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false, collation: "utf8mb4_general_ci")
+                    Address = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true, collation: "utf8mb4_general_ci")
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -293,13 +293,13 @@ namespace Exsm3945_Assignment.Migrations
                 columns: new[] { "ID", "Account_Type_ID", "Balance", "Client_ID", "Interest_Applied_Date" },
                 values: new object[,]
                 {
-                    { 1, 1, 62512.62m, 1, new DateOnly(1998, 1, 9) },
-                    { 2, 2, 79364.54m, 1, new DateOnly(1979, 5, 25) },
-                    { 3, 3, 169300.14m, 2, new DateOnly(2004, 4, 28) },
-                    { 4, 2, 55495.53m, 3, new DateOnly(2010, 8, 3) },
-                    { 5, 1, 392450.78m, 3, new DateOnly(2001, 5, 16) },
-                    { 6, 2, 223.96m, 4, new DateOnly(2008, 2, 14) },
-                    { 7, 3, 98000.00m, 2, new DateOnly(2019, 10, 5) }
+                    { 1, 1, 0m, 1, new DateOnly(1998, 1, 9) },
+                    { 2, 2, 0m, 1, new DateOnly(1979, 5, 25) },
+                    { 3, 3, 0m, 2, new DateOnly(2004, 4, 28) },
+                    { 4, 2, 0m, 3, new DateOnly(2010, 8, 3) },
+                    { 5, 1, 0m, 3, new DateOnly(2001, 5, 16) },
+                    { 6, 2, 0m, 4, new DateOnly(2008, 2, 14) },
+                    { 7, 3, 0m, 2, new DateOnly(2019, 10, 5) }
                 });
 
             migrationBuilder.CreateIndex(

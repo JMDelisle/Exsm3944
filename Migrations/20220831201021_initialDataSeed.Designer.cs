@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exsm3945_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220830154703_initialDataSeed")]
+    [Migration("20220831201021_initialDataSeed")]
     partial class initialDataSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 1,
                             AccountTypeId = 1,
-                            Balance = 62512.62m,
+                            Balance = 0m,
                             ClientId = 1,
                             InterestAppliedDate = new DateOnly(1998, 1, 9)
                         },
@@ -68,7 +68,7 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 2,
                             AccountTypeId = 2,
-                            Balance = 79364.54m,
+                            Balance = 0m,
                             ClientId = 1,
                             InterestAppliedDate = new DateOnly(1979, 5, 25)
                         },
@@ -76,7 +76,7 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 3,
                             AccountTypeId = 3,
-                            Balance = 169300.14m,
+                            Balance = 0m,
                             ClientId = 2,
                             InterestAppliedDate = new DateOnly(2004, 4, 28)
                         },
@@ -84,7 +84,7 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 4,
                             AccountTypeId = 2,
-                            Balance = 55495.53m,
+                            Balance = 0m,
                             ClientId = 3,
                             InterestAppliedDate = new DateOnly(2010, 8, 3)
                         },
@@ -92,7 +92,7 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 5,
                             AccountTypeId = 1,
-                            Balance = 392450.78m,
+                            Balance = 0m,
                             ClientId = 3,
                             InterestAppliedDate = new DateOnly(2001, 5, 16)
                         },
@@ -100,7 +100,7 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 6,
                             AccountTypeId = 2,
-                            Balance = 223.96m,
+                            Balance = 0m,
                             ClientId = 4,
                             InterestAppliedDate = new DateOnly(2008, 2, 14)
                         },
@@ -108,7 +108,7 @@ namespace Exsm3945_Assignment.Migrations
                         {
                             Id = 7,
                             AccountTypeId = 3,
-                            Balance = 98000.00m,
+                            Balance = 0m,
                             ClientId = 2,
                             InterestAppliedDate = new DateOnly(2019, 10, 5)
                         });
@@ -127,7 +127,6 @@ namespace Exsm3945_Assignment.Migrations
                         .HasColumnName("Interest_Rate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -164,7 +163,6 @@ namespace Exsm3945_Assignment.Migrations
                         .HasColumnName("ID");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("varchar(250)")
                         .HasColumnName("Address");
@@ -174,13 +172,11 @@ namespace Exsm3945_Assignment.Migrations
                         .HasColumnName("DOB");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("First_Name");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("Last_Name");

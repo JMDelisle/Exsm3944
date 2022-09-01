@@ -23,6 +23,7 @@ namespace Exsm3945_Assignment.Models
         [Precision(10, 2)]
         public decimal InterestRate { get; set; }
 
+
         [InverseProperty("AccountType")]
         public virtual ICollection<Account> Accounts { get; set; }
     }

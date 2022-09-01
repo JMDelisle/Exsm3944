@@ -81,49 +81,49 @@ namespace Exsm3945_Assignment.Data
                   Id = 1,
                   ClientId = 1,
                   AccountTypeId = 1,
-                  InterestAppliedDate = new DateOnly(1998, 01, 09)
+                  InterestAppliedDate = new DateTime(1998, 01, 09)
               },
                        new Account()
                        {
                            Id = 2,
                            ClientId = 1,
                            AccountTypeId = 2,
-                           InterestAppliedDate = new DateOnly(1979, 5, 25)
+                           InterestAppliedDate = new DateTime(1979, 5, 25)
                        },
                        new Account()
                        {
                            Id = 3,
                            ClientId = 2,
                            AccountTypeId = 3,
-                           InterestAppliedDate = new DateOnly(2004, 04, 28)
+                           InterestAppliedDate = new DateTime(2004, 04, 28)
                        },
                        new Account()
                        {
                            Id = 4,
                            ClientId = 3,
                            AccountTypeId = 2,
-                           InterestAppliedDate = new DateOnly(2010, 08, 03)
+                           InterestAppliedDate = new DateTime(2010, 08, 03)
                        },
                        new Account()
                        {
                            Id = 5,
                            ClientId = 3,
                            AccountTypeId = 1,
-                           InterestAppliedDate = new DateOnly(2001, 05, 16)
+                           InterestAppliedDate = new DateTime(2001, 05, 16)
                        },
                        new Account()
                        {
                            Id = 6,
                            ClientId = 4,
                            AccountTypeId = 2,
-                           InterestAppliedDate = new DateOnly(2008, 02, 14)
+                           InterestAppliedDate = new DateTime(2008, 02, 14)
                        },
                        new Account()
                        {
                            Id = 7,
                            ClientId = 2,
                            AccountTypeId = 3,
-                           InterestAppliedDate = new DateOnly(2019, 10, 05)
+                           InterestAppliedDate = new DateTime(2019, 10, 05)
                        }
                       );
 

@@ -21,15 +21,28 @@
 <form asp-action="DoTheGeneration">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label class="control-label">Client</label>
-        <input type="text" class="form-control" name="customerId" />
+        <label class="control-label">Type of Account:</label>
+        <input type="text" class="form-control" name="acc_TypeId" />
     </div>
     <div class="form-group">
-        <label class="control-label">Account</label>
-        <input type="text" class="form-control" name="productId" />
-
-        <label class="control-label">Account Type</label>
-        <input name="qty" type="text" class="form-control" />
+        <label class="control-label">First Name:</label>
+        <input type="text" class="form-control" name="c_FirstName" />
+    </div> 
+    <div class="form-group">
+        <label class="control-label">Last Name:</label>
+        <input type="text" class="form-control" name="c_LastName" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date Of Birth:</label>
+        <input type="text" class="form-control" name="c_DoB" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Home Address:</label>
+        <input type="text" class="form-control" name="c_Address" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Starting Account Balance</label>
+        <input name="acc_Balance" type="text" class="form-control" />
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />

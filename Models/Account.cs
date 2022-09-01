@@ -24,9 +24,12 @@ namespace Exsm3945_Assignment.Models
         [Column("Account_Type_ID", TypeName = "int(11)")]
         public int AccountTypeId { get; set; }
         [Column("Interest_Applied_Date")]
-        public DateOnly? InterestAppliedDate { get; set; }
+        public DateTime? InterestAppliedDate { get; set; }
         [Precision(10, 2)]
         public decimal Balance { get; set; }
+
+        [NotMapped]
+        public string appliedDate => InterestAppliedDate.ToString();
 
         public decimal ApplyInterest()
         {

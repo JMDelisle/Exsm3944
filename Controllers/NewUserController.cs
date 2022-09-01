@@ -36,6 +36,7 @@ namespace MVC_Demo.Controllers
 
             string[] formats = { "yyyy-MM-dd" };
 
+            DateOnly dt;
             // Let's do some validation!
             BLLValidationException validationState = new();
 
@@ -62,6 +63,8 @@ namespace MVC_Demo.Controllers
             else
                 if (!int.TryParse(c_FirstName, out int temp))
                 validationState.SubExceptions.Add(new Exception("First name was not in the correct format."));
+
+
             if (string.IsNullOrWhiteSpace(c_LastName))
                 validationState.SubExceptions.Add(new Exception("Last name was not provided."));
             else
@@ -69,10 +72,15 @@ namespace MVC_Demo.Controllers
                 validationState.SubExceptions.Add(new Exception("Last name was not in the correct format."));
             else
 
+           /* if (string.IsNullOrWhiteSpace(c_DoB))
+            {
+                validationState.SubExceptions.Add(new Exception("Your date of birth was not provided."));
+            } */
+            
             if (c_DoB == null)
                 validationState.SubExceptions.Add(new Exception("You did not provide our BirthDate!"));
             else
-                if (!DateOnly.TryParseExact(c_DoB, formats, System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly dt))
+                if (!DateOnly.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
                 validationState.SubExceptions.Add(new Exception("Quantity was not in the correct format."));
 
             if (string.IsNullOrWhiteSpace(c_Address))
@@ -111,20 +119,15 @@ namespace MVC_Demo.Controllers
                 var tempUpdateAccount = clientsId.Id;
 
 
-                _context.Accounts.Add(new Account()
-                {
-                    AccountTypeId = int.Parse(acc_TypeId)
-                    
-                });
-                _context.SaveChanges();
-               /*_context.Accounts.Add(new Account()
+               
+               _context.Accounts.Add(new Account()
                 {
                     AccountTypeId = int.Parse(acc_TypeId),
                     ClientId = tempUpdateAccount,
                     Balance = acc_Balance,
-                    InterestAppliedDate = dateOnly
+                    InterestAppliedDate =  DateTime.Now
                 });
-                _context.SaveChanges(); */
+                _context.SaveChanges(); 
             }
             return RedirectToAction("GenerateNewClients");
         }

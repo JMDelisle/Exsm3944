@@ -49,7 +49,7 @@ namespace Exsm3945_Assignment.Controllers
         // GET: Account/Create
         public IActionResult Create()
         {
-            ViewData["AccountTypeId"] = new SelectList(_context.AccountTypes, "Id", "Id");
+            ViewData["AccountTypes"] = new SelectList(_context.AccountTypes, "Id", "Id");
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "Id");
             return View();
         }
