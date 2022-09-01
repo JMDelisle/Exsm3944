@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace MVC_Demo.Controllers
 {
@@ -25,19 +26,16 @@ namespace MVC_Demo.Controllers
                 ViewData["Exceptions"] = JsonConvert.DeserializeObject(TempData["Exceptions"].ToString(), typeof(BLLValidationException));
 
 
-            ViewData["AccountTypes"] = new SelectList(_context.AccountTypes, "Id", "Name");
-            ViewData["Accounts"] = new SelectList(_context.Accounts, "Id", "Name");
-           // ViewData["TestData"] = "Here's some data I put in ViewData!";
+            ViewData["AccountTypes"] = new SelectList(_context.AccountTypes, "Id", "Name");//account_type
             return View();
         }
 
         public ActionResult DoTheGeneration(string acc_TypeId, string c_FirstName, string c_LastName, string c_DoB, string c_Address, decimal acc_Balance)
         {
 
-            string[] formats = { "yyyy-MM-dd" };
-
-            DateOnly dt;
+            string[] formats = { "dd-MM-yyyy" };
             // Let's do some validation!
+            DateOnly user;
             BLLValidationException validationState = new();
 
             // Do validation, if something fails, add it as a sub exception.
@@ -50,47 +48,57 @@ namespace MVC_Demo.Controllers
             else
                 // Do any other validation with this item - does it exist in the database, does it have necessary properties/permissions, etc.
                 // Remember, if we're dealing with ID's, to test and make sure they are integers before querying the database.
-                if (!int.TryParse(acc_TypeId, out int temp))
+                if (!int.TryParse(acc_TypeId, out int random))
                 validationState.SubExceptions.Add(new Exception("No Account Type in the proper format. "));
             else
                     // Test to see if this customer exists or not.
-                    if (!_context.AccountTypes.Any(x => x.Id == temp))
+                    if (!_context.AccountTypes.Any(x => x.Id == random))
                 validationState.SubExceptions.Add(new Exception("There was not any Account Type provided... **Account Type Not Found**"));
 
-
-            if (string.IsNullOrWhiteSpace(c_FirstName))
-                validationState.SubExceptions.Add(new Exception("First name was not provided."));
             else
-                if (!int.TryParse(c_FirstName, out int temp))
+                if (string.IsNullOrWhiteSpace(c_FirstName))
                 validationState.SubExceptions.Add(new Exception("First name was not in the correct format."));
-
-
-            if (string.IsNullOrWhiteSpace(c_LastName))
-                validationState.SubExceptions.Add(new Exception("Last name was not provided."));
             else
-                if (!int.TryParse(c_LastName, out int temp))
+            if (c_FirstName.Trim().Length < 2 || c_FirstName.Trim().Length > 55)
+                validationState.SubExceptions.Add(new Exception("First name character should be between 2-55."));
+            else
+                if (!new Regex(@"^[a-zA-Z.-]{2,55}$").IsMatch(c_FirstName))
+                validationState.SubExceptions.Add(new Exception("First name does not contain numbers."));
+
+
+
+            else
+                if (string.IsNullOrWhiteSpace(c_LastName))
                 validationState.SubExceptions.Add(new Exception("Last name was not in the correct format."));
             else
+            if (c_LastName.Length < 2 || c_LastName.Length > 55)
+                validationState.SubExceptions.Add(new Exception("Last name character should be between 2-55."));
+            else
+                if (!new Regex(@"^[a-zA-Z.-]{2,55}$").IsMatch(c_FirstName)) 
+                validationState.SubExceptions.Add(new Exception("Last name does not contain numbers."));
 
-           /* if (string.IsNullOrWhiteSpace(c_DoB))
-            {
-                validationState.SubExceptions.Add(new Exception("Your date of birth was not provided."));
-            } */
+
+            else
             
-            if (c_DoB == null)
+            if (c_DoB == null)//Makes it so you cannot just enter nothing.
                 validationState.SubExceptions.Add(new Exception("You did not provide our BirthDate!"));
             else
-                if (!DateOnly.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
-                validationState.SubExceptions.Add(new Exception("Quantity was not in the correct format."));
+                if (!DateOnly.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out user))
+                validationState.SubExceptions.Add(new Exception("Date of Birth was not in the correct format."));
 
-            if (string.IsNullOrWhiteSpace(c_Address))
+            //if (!DateOnly.TryParseExact(c_DoB, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly dt))
+
+
+                if (string.IsNullOrWhiteSpace(c_Address))
                 validationState.SubExceptions.Add(new Exception("You did not provide your Address."));
-            else
+           /* else
                 if (c_Address.Length < 15 || c_Address.Length > 50)
-                validationState.SubExceptions.Add(new Exception("Your home address was not in the correct format."));
+                validationState.SubExceptions.Add(new Exception("Your home address was not in the correct format."));*/
+            
+            
             else
                     if (acc_Balance <= 0)
-                validationState.SubExceptions.Add(new Exception("Your starting account balance must be greater than zero."));
+                validationState.SubExceptions.Add(new Exception("Your opening balance should not be less then 0."));
 
             // ONCE EACH ITEM IS TESTED, THEN DO ANY TESTS THAT RELY ON MULTIPLE INPUTS.
 
@@ -102,28 +110,32 @@ namespace MVC_Demo.Controllers
             // If we go in here, we've not encountered any validation issues, so we are good to proceed.
             else
             {
-                Client client = new()
+                Client randomClients = new Client()
                 {
                     FirstName = c_FirstName,
                     LastName = c_LastName,
                     Dob = DateOnly.Parse(c_DoB),
-                    Address = c_Address
+                    Address = c_Address,
                 };
             
 
-                _context.Clients.Add(client);
-                _context.SaveChanges();
+                _context.Clients.Add(randomClients);
 
-                var clientsId = _context.Clients.Where(x => x.FirstName == c_FirstName && x.LastName == c_LastName).Single();
+                var userClientId = _context.Clients.Where(x => x.FirstName == c_FirstName && x.LastName == c_LastName).Single();
+                _context.Entry(userClientId).Collection(x => x.Accounts).Load();
+                var newClientAccountCreation = randomClients.Id;
+
+
+                /*var clientsId = _context.Clients.Where(x => x.FirstName == c_FirstName && x.LastName == c_LastName).Single();
                 _context.Entry(clientsId).Collection(x => x.Accounts).Load();
-                var tempUpdateAccount = clientsId.Id;
+                var tempUpdateAccount = clientsId.Id; */
 
 
                
                _context.Accounts.Add(new Account()
                 {
                     AccountTypeId = int.Parse(acc_TypeId),
-                    ClientId = tempUpdateAccount,
+                    ClientId = newClientAccountCreation,
                     Balance = acc_Balance,
                     InterestAppliedDate =  DateTime.Now
                 });

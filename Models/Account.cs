@@ -28,6 +28,8 @@ namespace Exsm3945_Assignment.Models
         [Precision(10, 2)]
         public decimal Balance { get; set; }
 
+
+
         [NotMapped]
         public string appliedDate => InterestAppliedDate.ToString();
 

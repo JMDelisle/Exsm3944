@@ -22,6 +22,7 @@ namespace Exsm3945_Assignment.Models
         [Column("Last_Name")]
         [StringLength(50)]
         public string LastName { get; set; } = null!;
+
         [Column("DOB")]
         public DateOnly Dob { get; set; }
         [Column("Address")]
