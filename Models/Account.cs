@@ -29,7 +29,7 @@ namespace Exsm3945_Assignment.Models
         public decimal Balance { get; set; }
 
         [NotMapped]
-        public string ClientRevised => Id + ", " + Client.Fullname;
+        public string ClientRevised => Id + ", " + Client.Fullname;// Cannot get this to work...
 
 
         [NotMapped]

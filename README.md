@@ -12,6 +12,7 @@ Jean-Marc Delisle
 
 
 -Pretty much completed for the most part other than some css I will be getting done.
+-Added some css to look a bit better than just plain white and I don't think it's too bright but comment if it is.
 
 
 **Big shout out to Mark and Arv for helping me where was needed! Thank you!**
