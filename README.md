@@ -1,6 +1,6 @@
-EXSM3945 - Project
-Due Date - Sept 01, 2022
-Jean-Marc Delisle
+EXSM3945 - Project<br>
+Due Date - Sept 01, 2022<br>
+Jean-Marc Delisle<br>
 
 -Creating an MVC from an old 3942 project * more less copy and pasting*.
 -Using authentication method to create login and must login to make any changes.
